@@ -66,7 +66,7 @@ def connexion_email():
                 name = conn.entries[0].displayName.value                                                 
                 thumbnailPhoto = conn.entries[0].thumbnailPhoto.value
 
-                dict = {'name': name, 'mail': email_util, 'ad_2000': ad_2000, 'title': title,'thumbnailPhoto': thumbnailPhoto}
+                dict = {'name': name, 'mail': email_util, 'ad_2000': ad_2000, 'title': title,'thumbnailPhoto': base64.encodebytes(thumbnailPhoto).decode()}
                 msg = dict
                 return {"response": True, "message": msg}
             else:
@@ -78,3 +78,6 @@ def connexion_email():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+
+#docker build -t flask-tutorial:latest .
+#docker run -d -p 5000:5000 flask-tutorial
